@@ -1,15 +1,23 @@
 import { createStore } from 'redux';
-import { changeName, changeSurname, addYearsOld } from './actions';
 import reducer from './reducers';
-    
+import {
+  changeOwnerName,
+  changeOwnerSurname,
+  changeOwnerBirth,
+  changeCarModel,
+  changeCarColor,
+  changeCarMade
+} from './actions';
+import {initialState} from './constants';
+
 // Store
-const store = createStore(reducer);
+const store = createStore(reducer, initialState);
 
-console.log(store.getState());
+store.subscribe(() => console.log(store.getState()));
 
-store.dispatch(changeName('Olga'));
-store.dispatch(changeSurname('Ivanova'));
-store.dispatch(addYearsOld(5));
-
-console.log(store.getState());
-console.log(store.getState().user.firstName);
+store.dispatch(changeOwnerName('Вася'));
+store.dispatch(changeOwnerSurname('Пупкин'));
+store.dispatch(changeOwnerBirth(1987));
+store.dispatch(changeCarModel('Toyota'));
+store.dispatch(changeCarColor('black'));
+store.dispatch(changeCarMade(2017));
